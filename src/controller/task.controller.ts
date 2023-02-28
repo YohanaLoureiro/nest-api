@@ -7,28 +7,28 @@ export class TaskController {
   constructor(private taskService: TaskService) {}
 
   @Post()
-  async create(@Body() taskData: Task): Promise<Task> {
-    return this.taskService.create(taskData);
+  async createTask(@Body() taskData: Task): Promise<Task> {
+    return this.taskService.createTask(taskData);
   }
 
   @Put(':id')
-  async assign(@Param('id') id: number, @Body() taskId: number): Promise<Task> {
-    return this.taskService.assign(id, taskId);
+  async assignTaskToPerson(@Param('id') id: number, @Body() taskId: number): Promise<Task> {
+    return this.taskService.assignTaskToPerson(id, taskId);
   }
 
   @Get(':id/person')
-  async findByPerson(@Param('id') id: number): Promise<Task[]> {
-    return this.taskService.findByPerson(id);
+  async listTasksByPerson(@Param('id') id: number): Promise<Task[]> {
+    return this.taskService.listTasksByPerson(id);
   }
 
   @Get()
-  async findAll(): Promise<Task[]> {
-    return this.taskService.findAll();
+  async listAllTasks(): Promise<Task[]> {
+    return this.taskService.listAllTasks();
   }
 
   @Put(':id/finish')
-  async finish(@Param('id') id: number, @Body() finishDate: Date): Promise<Task> {
-    return this.taskService.finish(id, finishDate);
+  async finishActiveTask(@Param('id') id: number): Promise<Task> {
+    return this.taskService.finishActiveTask(id);
   }
 }
 

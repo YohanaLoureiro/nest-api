@@ -7,7 +7,7 @@ export class PersonController {
   constructor(private personService: PersonService) {}
 
   @Post()
-  async create(@Body() personData: Person): Promise<Person> {
-    return this.personService.create(personData);
+  async createPerson(@Body() personData: Person): Promise<Person> {
+    return this.personService.createPerson(personData);
   }
 }
