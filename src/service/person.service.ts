@@ -14,5 +14,9 @@ export class PersonService {
   async createPerson(person: Person): Promise<Person> {
     return this.personRepository.save(person);
   }
-  
+
+  //listar pessoas
+  async listPeople(): Promise<Person[]> {
+    return this.personRepository.find();
+  }
 }
