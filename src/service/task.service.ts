@@ -19,11 +19,12 @@ export class TaskService {
   }
 
   //Atribuir tarefa a pessoa
-  async assignTaskToPerson(taskId: number, personId: number): Promise<Task> {
+  async assignTaskToPerson(personId: number, taskId: number): Promise<Task> {
+    const taskWhere = 'task.id = '.concat(taskId["taskId"])
     const task = await this.taskRepository.createQueryBuilder('task')
-      .where('task.id = :id', { id: taskId })
+      .where(taskWhere)
       .getOne();
-  
+    
     const person = await this.personRepository.createQueryBuilder('person')
       .leftJoinAndSelect('person.tasks', 'task')
       .where('person.id = :id', { id: personId })
